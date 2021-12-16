@@ -48,14 +48,14 @@ public:
         newScale = 1;
         scale = 1;
         ticks = 0;
-        brR = 0;
-        brG = 0;
-        brB = 255;
+        brR = 127;
+        brG = 127;
+        brB = 127;
 
-        pnR = 127;
-        pnG = 127;
-        pnB = 127;
-        wndScale = 1;
+        pnR = 255;
+        pnG = 255;
+        pnB = 0;
+        wndScale = 0.5;
     }
 
     void draw(HDC dc)
@@ -80,14 +80,10 @@ public:
         LineTo(dc, (600 + offset.x) * scale * wndScale, (400 + offset.y) * scale * wndScale);
         LineTo(dc, (450 + offset.x) * scale * wndScale, (150 + offset.y) * scale * wndScale);
 
-        drawCircle(dc, (450 + offset.x) * scale * wndScale, (150 + offset.y) * scale * wndScale, 80 * scale * wndScale);
-        drawCircle(dc, (300 + offset.x) * scale * wndScale, (400 + offset.y) * scale * wndScale, 80 * scale * wndScale);
-        drawCircle(dc, (600 + offset.x) * scale * wndScale, (400 + offset.y) * scale * wndScale, 80 * scale * wndScale);
+        drawCircle(dc, (450 + offset.x) * scale * wndScale, (150 + offset.y) * scale * wndScale, 100 * scale * wndScale);
+        drawCircle(dc, (300 + offset.x) * scale * wndScale, (400 + offset.y) * scale * wndScale, 100 * scale * wndScale);
+        drawCircle(dc, (600 + offset.x) * scale * wndScale, (400 + offset.y) * scale * wndScale, 100 * scale * wndScale);
 
-        if (fmove)
-            SetCursor(LoadCursor(0, IDC_HAND));
-        else
-            SetCursor(LoadCursor(0, IDC_ARROW));
     }
 
     void setBrushColor(int r, int g, int b)
@@ -178,7 +174,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
     wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDC_LABA2));
-    wcex.hCursor = 0;// LoadCursor(nullptr, IDC_ARROW);
+    wcex.hCursor =  LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_LABA2);
     wcex.lpszClassName = szWindowClass;
